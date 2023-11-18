@@ -1,0 +1,163 @@
+
+
+
+
+h1{
+    width: fit-content;
+    margin: 200px auto;
+}
+
+div{
+    width: fit-content;
+    margin: 200px auto;
+}
+
+.styl{
+    color: red;
+}
+
+input{
+    display: block;
+    width:95%;
+    margin-bottom: 10px;
+    border-radius: 2%;
+    border: none;
+}
+label{
+    color: #fff;
+}
+
+.addAcountFm{
+    width: 330px;
+    height: 295px;
+    margin: 150px auto;
+    padding:  30px 20px 10px;
+    background:#e9c1c1;
+    border-radius: 3%;
+    border: none;
+}
+
+.addLoginDisplay{
+    width: 330px;
+    height: 275px;
+    margin: 120px auto 80px;
+    padding:  30px 20px 10px;
+    background:#e9c1c1;
+    border-radius: 3%;
+    border: none;
+}
+
+.addAcountFm > p{
+    margin: 0;    
+    height: 30px;
+    color: red;
+    font-weight: bold;
+    font-size: 1.03rem;
+}
+
+.addAcountBtn{
+    width:fit-content;
+    margin: 0 auto;
+    border-radius: 3%;
+    background: #fff;
+}
+
+.btn:hover{
+    opacity: 0.7;
+}
+
+
+.productHeader{
+    width: fit-content;
+    margin: 0 auto 50px;
+    color: rgb(169, 63, 255);
+}
+
+.producrtContainer{
+    display:flex;
+    width: 100%;
+    height: 800px;
+    margin: 0 auto;
+    background:rgb(227, 227, 255);
+}
+
+.productContent{
+    width: 17vw;
+    height:27vw;
+    margin: 50px auto;
+    background: #fff;
+    border: solid 1.5px #ffffff;
+    border-radius: 25px;
+    color: rgb(169, 63, 255);
+}
+
+.productContent > h3{
+    width: fit-content;
+    margin: 5px auto 13px;
+}
+
+.bookMarkBtn{
+    width: fit-content;
+    margin:2px auto 2px;
+    padding: 2px;
+    font-size: 0.7rem;
+    background: #f3e4e4;
+    border-radius: 25px;
+}
+.bookMarkBtn:hover{
+    opacity: 0.9;
+    color: #fa72ff;
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.ProductPageSubject{
+    width: fit-content;
+    margin: 0 auto;    
+}
+
+.ProductText{
+    width: fit-content;
+    margin: 0 auto 13px;
+    padding: 4px;
+    background: #f3e4e4;
+    font-size: 0.7rem;
+    border-radius: 7%;
+}
+
+.ProductImg{
+    width: 90%;
+    height: 30%;
+    margin: 0 auto 10px;
+    background: #eaeaea;
+    border-radius: 20px;
+}
+
+
+.navLogin{
+    font-size: 10px;
+    width: fit-content;
+    margin-left: auto;
+    color: #fff;
+}
+
+.navLogin:hover{
+    color: aqua;
+    cursor: pointer;
+}
+
+
+.hidden{
+    opacity: 0;
+    user-select: none;
+}
+
+
+
+
+
+
+
+
+
+
