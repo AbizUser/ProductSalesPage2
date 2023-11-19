@@ -234,6 +234,8 @@ function favoriteAction(){
 function productSalesPageAction(){
     console.log(`start favoriteAction`)
     console.log(favoriteAction());
+    // favoriteActionから値が帰ってきた場合にはDBへの値登録処理を組み込む。
+    
 }
 
 
