@@ -1,6 +1,9 @@
 `use strict`;
 
 
+
+
+
 // comment
 const gittest= 0 
 
@@ -194,19 +197,53 @@ function btnActionFunc() {
     }
 }
 
-btnActionFunc();
-
-document.querySelector(`.navLogin`).addEventListener(`click`, () => {
-    callParent = `navLogin`;
-    if (initDisplayFlg === true) {
-        initDisplayFlg = false;
-    } else {
-        initDisplayFlg = true;
-    }
-    delElm()
+function loginPageAction(){
     btnActionFunc();
-})
+    document.querySelector(`.navLogin`).addEventListener(`click`, () => {
+        callParent = `navLogin`;
+        if (initDisplayFlg === true) {
+            initDisplayFlg = false;
+        } else {
+            initDisplayFlg = true;
+        }
+        delElm()
+        btnActionFunc();
+    })
+}
 
 
+
+function favoriteAction(){
+    console.log(`start favoriteAction`);
+    //処理前のチェック項目としてボタンが存在しているのか確認する処理が必要
+    const favoriteProductBtnList =  document.querySelectorAll(".bookMarkBtnContent")
+    favoriteProductBtnList.forEach(clickedProduct =>{
+        clickedProduct.addEventListener(`click`,()=>{
+            const clickedProductIcon = clickedProduct.firstElementChild;
+            const clickedProductId = clickedProduct.parentElement.id;
+            clickedProductIcon.classList.toggle(`bookmarkBtnAction`);
+            console.log(clickedProductId);  
+            return(clickedProductId)
+        })
+    })
+    console.log(`end favoriteAction`);
+}
+
+
+//商品ページの挙動制御用
+function productSalesPageAction(){
+    console.log(`start favoriteAction`)
+    console.log(favoriteAction());
+}
+
+
+// ページごとにメイン処理を呼び出す。
+console.log(`start locationcheck to : ${currentLocation}`)
+if(currentLocation.includes(`index.html`)){
+    console.log(`call index.html action`);
+}else if(currentLocation.includes(`productSalesPage.html`)){
+    console.log(`call productSalesPage.html action`);
+    productSalesPageAction();
+}
 
 

@@ -76,8 +76,9 @@ label{
 .producrtContainer{
     display:flex;
     width: 100%;
-    height: 800px;
+    height: fit-content;
     margin: 0 auto;
+    padding: 50px;
     background:rgb(227, 227, 255);
 }
 
@@ -96,19 +97,35 @@ label{
     margin: 5px auto 13px;
 }
 
-.bookMarkBtn{
+.bookMarkBtnContent{
+    display: flex;
     width: fit-content;
     margin:2px auto 2px;
-    padding: 2px;
+    height: fit-content;
+    padding: 0.13vw;
     font-size: 0.7rem;
     background: #f3e4e4;
     border-radius: 25px;
 }
-.bookMarkBtn:hover{
+
+.bookMarkBtnContent:hover{
     opacity: 0.9;
     color: #fa72ff;
     transform: scale(1.05);
     cursor: pointer;
+}
+
+.bookMarkText{
+    margin: 0 0.6vw 0 0 ;
+}
+
+.bookMarkIcon{
+    color: #fff;
+    margin: 0 0 0 0.3vw;
+}
+
+.bookmarkBtnAction{
+    color: #fa72ff;
 }
 
 .ProductPageSubject{
