@@ -3,10 +3,6 @@
 
 // comment
 const gittest= 0 
-const gittests= 0 
-const gittes= 0 
-const gittews= 0 
-const gittews= 0 
 
 let initDisplayFlg = true;
 let currentLocation = location.href;
