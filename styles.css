@@ -29,6 +29,7 @@ label{
 
 .addAcountFm{
     width: 330px;
+    width: 330px;
     height: 295px;
     margin: 150px auto;
     padding:  30px 20px 10px;
@@ -134,22 +135,24 @@ label{
 }
 
 .ProductText{
-    width: fit-content;
+    width: 90%;
+    height: 45%;
+    overflow: hidden;
     margin: 0 auto 13px;
     padding: 4px;
     background: #f3e4e4;
-    font-size: 0.7rem;
+    font-size: 0.8vw;
     border-radius: 7%;
+    
 }
 
 .ProductImg{
     width: 90%;
-    height: 30%;
+    height: 28%;
     margin: 0 auto 10px;
     background: #eaeaea;
     border-radius: 20px;
 }
-
 
 .navLogin{
     font-size: 10px;
@@ -163,7 +166,6 @@ label{
     cursor: pointer;
 }
 
-
 .hidden{
     opacity: 0;
     user-select: none;
@@ -174,7 +176,15 @@ label{
 
 
 
+/* mongoDB設計
 
+商品Id　；商品名
+
+商品名：商品価格
+
+
+
+*/
 
 
 

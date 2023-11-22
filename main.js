@@ -243,9 +243,44 @@ function productSalesPageAction(){
 console.log(`start locationcheck to : ${currentLocation}`)
 if(currentLocation.includes(`index.html`)){
     console.log(`call index.html action`);
+    loginPageAction();
 }else if(currentLocation.includes(`productSalesPage.html`)){
     console.log(`call productSalesPage.html action`);
     productSalesPageAction();
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+// API連携用
+
+async function deleteItem(deleteId) {
+    console.log(`Start delete method btnStatus is ${btnStatus}`)
+    console.log(`処理対象${deleteId}`)
+    if (btnStatus === 0) {
+      try {
+        const response = await axios.delete(`/api/v1/thread/${deleteId}`);
+        if (response.status === 200) {
+          console.log(`Thread with ID ${deleteId} deleted successfully.`);
+          btnStatus = 0;
+        } else {
+          console.error(`Failed to delete thread with ID ${deleteId}.`);
+        }
+      } catch (error) {
+        console.error('An error occurred:', error);
+      }
+    }else{
+      console.log(`btnStatusが1の為削除をしません`)
+    }
+  }
