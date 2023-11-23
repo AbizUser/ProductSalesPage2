@@ -3,12 +3,18 @@
 
 
 
+try {
+
+    console.log(axios);
+} catch (error) {
+    console.log(error)
+}
 
 // comment
-const gittest= 0 
+const gittest = 0
 
 let initDisplayFlg = true;
-let currentLocation = location.href;
+let currentLocation = document.querySelector("body");
 let callParent;
 
 function test(inpValue, inpAllValue) {
@@ -109,7 +115,7 @@ function delElm() {
         toLoginBtn.textContent = `ログイン画面へ`
     }
     else if (initDisplayFlg === false) {
-        AddBtn.value = `ログイン`; 
+        AddBtn.value = `ログイン`;
         toLoginBtn.textContent = `新規登録画面へ`
     }
 }
@@ -125,7 +131,7 @@ function addLoginDisplay() {
 
 function toAddAcount() {
     console.log("アカウント作成画面へ戻ります。")
-    initDisplayFlg = true; 
+    initDisplayFlg = true;
 }
 
 function roginProcces() {
@@ -162,16 +168,7 @@ function roginProcces() {
     })
 }
 
-//商品販売ページ遷移コード
-// function productPageAction() {
-//     document.querySelectorAll(`btn`).addEventListener("click", () => {
-//         window.location.href = (`productSalesPage.html`);
-//     })
-// }
 
-if (currentLocation.includes(`addAccount.html`)) {
-    // btnActionFunc();
-}
 
 function btnActionFunc() {
     let btnAction = document.querySelector(".addAcountBtn")
@@ -197,7 +194,7 @@ function btnActionFunc() {
     }
 }
 
-function loginPageAction(){
+function loginPageAction() {
     btnActionFunc();
     document.querySelector(`.navLogin`).addEventListener(`click`, () => {
         callParent = `navLogin`;
@@ -211,76 +208,109 @@ function loginPageAction(){
     })
 }
 
+// 実装すること
 
 
-function favoriteAction(){
+// let seet = new Set();
+// seet = new Set(data);
+// console.log(seet)
+//     console.log(`end favoriteAction`);
+
+function favoriteAction(data) {
     console.log(`start favoriteAction`);
-    //処理前のチェック項目としてボタンが存在しているのか確認する処理が必要
-    const favoriteProductBtnList =  document.querySelectorAll(".bookMarkBtnContent")
-    favoriteProductBtnList.forEach(clickedProduct =>{
-        clickedProduct.addEventListener(`click`,()=>{
-            const clickedProductIcon = clickedProduct.firstElementChild;
-            const clickedProductId = clickedProduct.parentElement.id;
-            clickedProductIcon.classList.toggle(`bookmarkBtnAction`);
-            console.log(clickedProductId);  
-            return(clickedProductId)
+    data.map((clickProduct)=>{
+        const subjectItem = document.getElementById(clickProduct._id);
+        subjectItem.lastElementChild.addEventListener(`click`, () => {
+            console.log(`${subjectItem.lastElementChild}`)
+            const clickProductIcon = subjectItem.lastElementChild.firstElementChild;
+            let btnStatus = ``;
+            clickProductIcon.classList.toggle(`bookmarkBtnAction`);
+            //お気に入りボタンの状態によって後のPATCHリクエストの内容を変更
+            console.log(`クラス比較対象：${clickProductIcon.className}`)
+            if (clickProductIcon.className.includes(`bookmarkBtnAction`) === true) {
+                btnStatus = true;
+            } else {
+                btnStatus = false;
+            }
+            console.log(clickProduct._id)
+            //patchメソッドの呼び出し
+            updateBookmarkStatus(clickProduct._id, btnStatus);
         })
     })
-    console.log(`end favoriteAction`);
 }
 
+// 商品描画処理
+async function testmeth() {
+    try {
+        console.log("start get method")
+        await axios.get("/api/products");
+    } catch (err) {
+        console.log(err)
+    }
+}
 
-//商品ページの挙動制御用
-function productSalesPageAction(){
+const getAllProduct = async () => {
+    const threadSectionDOM = document.querySelector(`.producrtContainer`);
+    try {
+        console.log("start get method")
+        let allThreads = await axios.get("/api/products");
+        let { data } = allThreads;
+        let btnFlg = ``;
+        allThreads = data.map((dataItem) => {
+            const { _id, bookmarkflg } = dataItem;
+            console.log(`${_id}${bookmarkflg}`);
+            btnFlg = ``
+            if (bookmarkflg === true) {
+                btnFlg = "bookmarkBtnAction";
+            }
+            return `
+            <div class="productContent" id="${_id}">
+                <h3 class="ProductSubject">商品名</h3>
+                <div class="ProductImg"><img src="" alt="商品画像"></div>
+                    <p class="ProductText">テキスト―テキスト―テキスト―テキスト<br>テキスト―テキスト―テキスト―テキスト<br>テキスト―テキスト―テキスト―テキスト<br>テキスト―テキスト―テキスト―テキスト<br>テキスト―テキスト―テキスト―テキスト<br>テキスト―テキスト―テキスト―テキスト<br>テキスト―テキスト―テキスト―テキスト<br>テキスト―テキスト―テキスト―テキスト<br>テキスト―テキスト―テキスト―テキスト<br>テキスト―テキスト―テキスト―テキスト</p>
+                <div class="bookMarkBtnContent">
+                <p class="bookMarkIcon ${btnFlg}">★</p>
+                <p class="bookMarkText">この商品をブックマーク</p>
+                </div>
+            </div>
+          `;
+        })
+        .join(``);
+        console.log(`格納されている情報一覧:${data}`);
+        threadSectionDOM.innerHTML = allThreads;
+        favoriteAction(data)
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+async function updateBookmarkStatus(clickedProductId, btnStatus) {
+    console.log(`start update ${clickedProductId} : ${btnStatus}`);
+    try {
+        await axios.patch(`/api/product/${clickedProductId}`, {
+            _id : clickedProductId,
+            bookmarkflg : btnStatus
+          });
+
+    } catch (error) {
+        console.error(`Error updating thread`, error);
+    }
+
+}
+
+//商品ページでの動作制御用
+function productSalesPageAction() {
     console.log(`start favoriteAction`)
-    console.log(favoriteAction());
-    // favoriteActionから値が帰ってきた場合にはDBへの値登録処理を組み込む。
-    
+    getAllProduct();
 }
-
 
 // ページごとにメイン処理を呼び出す。
-console.log(`start locationcheck to : ${currentLocation}`)
-if(currentLocation.includes(`index.html`)){
+console.log(`start locationcheck to : ${currentLocation.className}`)
+if (currentLocation.className === `index`) {
     console.log(`call index.html action`);
     loginPageAction();
-}else if(currentLocation.includes(`productSalesPage.html`)){
+} else if (currentLocation.className === `productSalesPage`) {
     console.log(`call productSalesPage.html action`);
     productSalesPageAction();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// API連携用
-
-async function deleteItem(deleteId) {
-    console.log(`Start delete method btnStatus is ${btnStatus}`)
-    console.log(`処理対象${deleteId}`)
-    if (btnStatus === 0) {
-      try {
-        const response = await axios.delete(`/api/v1/thread/${deleteId}`);
-        if (response.status === 200) {
-          console.log(`Thread with ID ${deleteId} deleted successfully.`);
-          btnStatus = 0;
-        } else {
-          console.error(`Failed to delete thread with ID ${deleteId}.`);
-        }
-      } catch (error) {
-        console.error('An error occurred:', error);
-      }
-    }else{
-      console.log(`btnStatusが1の為削除をしません`)
-    }
-  }
